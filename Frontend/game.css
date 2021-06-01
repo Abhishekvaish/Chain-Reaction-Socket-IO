@@ -1,0 +1,90 @@
+body{
+	margin: 0;
+}
+nav{
+	height: 60px;
+	background-color: #333;
+	color: white;
+	line-height: 60px;
+	font-size: 2rem;
+	padding-left: 30px;
+}
+.side-panel {
+	position: absolute;
+	top: 60px;
+	right: 0;
+	height: calc(100vh - 60px);
+	display: none;
+	z-index: 1;
+	background-color: white;
+}
+#msgbox{
+	height: calc(100% - 90px) ;
+	background: #4442;
+	max-width: 430px;
+	padding: 20px;
+	overflow-y: scroll;
+}
+
+input{
+	width: 380px;
+	/*height: 30px;*/
+	height: 30px;
+}
+button{
+	padding: 10px;
+	width: 80px;
+}
+.me{
+	display: flex;
+	justify-content: flex-end;
+}
+.me p{
+	background-color: #FFE5Da;
+	padding: 10px 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+.other {
+	display: flex;
+	justify-content: flex-start;
+}
+.other p{
+	background-color: #fffffa;
+	padding: 10px 20px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;	
+}
+.joined {
+	display: flex;
+	justify-content: center;
+}
+.joined p{
+	font-size: 0.8rem;
+	letter-spacing: 1px;
+}
+
+.left {
+	display: flex;
+	justify-content: center;
+}
+.left p{
+	color: gray;
+	letter-spacing: 1px;
+	font-size: 0.8rem;
+}
+
+.toggle{
+	background-color: #333;
+	width: 20px;
+	height: 20px;
+	color: white;
+	display: flex;
+	justify-content: center;
+	display: inline-block;
+	float: right;
+	margin-right: 30px;
+	cursor: pointer;
+}

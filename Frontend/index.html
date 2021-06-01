@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chain Reaction</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<nav>
+	Chain Reaction
+</nav>
+
+<div class="container">
+	<form onsubmit="createRoom(event)">
+		<input type="text" id="room-name" required>
+		<button type="submit">Create</button>
+	</form>
+	<br><br><br>
+	<div id="list-rooms">
+		
+	</div>
+</div>
+<script src="http://localhost:5000/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
