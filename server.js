@@ -5,8 +5,22 @@ const io = require('socket.io')(5000,{
 	}
 })
 
-rooms =  {}//{ "Room-1":{users:{}, turn:0 },"Room-2":{users:["a","b"], turn:1 } }
+rooms =  {}
+// {
+// 	"room-1":{
+// 		"users"	:{
+// 			"socket_id_1":{
+// 				"name":"userName",
+// 				"color":"red"
+// 			}
+// 		},
+// 		"turn":0,
+// 		"grid" : [[{"count":0 , "color":null}]]
+// 	}
+// }
+
 users = {}
+colors = ["#ff0000" , "#00ff00", "#0000ff" , "#ffff00" , "#00ffff" , "#ff00ff"]
 
 io.on('connection',socket => {
 	console.log("connected with ", socket.id)
@@ -20,11 +34,25 @@ io.on('connection',socket => {
 
 	socket.on('join-room' , data => {
 		if (rooms[data.roomName]){
-			rooms[data.roomName].users[socket.id] = data.userName
+			colindex = Object.keys(rooms[data.roomName].users).length	
+			
+			rooms[data.roomName].users[socket.id] = {
+				"name": data.userName	,
+				"color": colors[colindex]
+			}
+			if (colindex == 0)
+				rooms[data.roomName].users[socket.id]["admin"] = true
+
 			socket.join(data.roomName)
 			users[socket.id] = data.roomName
 			socket.broadcast.emit('list-rooms',rooms)
+			
 			socket.broadcast.to(data.roomName).emit('user-joined',data.userName)
+			
+
+			io.to(data.roomName).emit('member-list',rooms[data.roomName].users)
+			// socket.broadcast.to(data.roomName).emit('member-list',rooms[data.roomName].users)
+			// socket.emit('member-list',rooms[data.roomName].users)
 		}
 		else
 			socket.emit('redirect-home')
@@ -35,30 +63,66 @@ io.on('connection',socket => {
 		roomName = users[socket.id]
 
 		socket.broadcast.to(roomName).emit('receive-msg',{
-			"name": rooms[roomName].users[socket.id],
+			"name": rooms[roomName].users[socket.id]["name"],
 			"msg": msg
 		})
 	})
 
 
+	socket.on('grid-size' , data => {
+		let  roomName = users[socket.id]		
+		rooms[roomName]["grid"] = Array( parseInt(data.rows) ).fill(0).map( x=> Array(parseInt(data.cols) ).fill({"count":0,"color":null}))
+		// socket.broadcast.to(roomName).emit('initialize-grid',data)
+		io.to(roomName).emit('initialize-grid',data)
+		io.to(roomName).emit('receive-turn',0)
+	})
+
+
+
+
+	socket.on('send-turn',i => {
+		let  roomName = users[socket.id]		
+		rooms[roomName].turn = i 
+		io.to(roomName).emit('receive-turn',i)
+		
+	})
+
+
+	socket.on('send-click-grid',data => {
+		let  roomName = users[socket.id]		
+		rooms[roomName]["grid"][data.i][data.j]["color"] = data.colors
+		rooms[roomName]["grid"][data.i][data.j]["count"] = data.count
+		socket.broadcast.to(roomName).emit('receive-grid-click',data)
+	})
+
+	socket.on('send-winner',name =>{
+		let roomName = users[socket.id]
+		socket.broadcast.to(roomName).emit('receive-winner',name)
+	})
+
+
+
 	socket.on('disconnect', ()=>{
 		roomName = users[socket.id]		
 		if (roomName != null){
-			userName = rooms[roomName].users[socket.id]
-			socket.broadcast.to(roomName).emit('user-left',userName)
-			socket.leave(roomName)			
-			delete rooms[ roomName ].users[socket.id]			
+			userName = rooms[roomName].users[socket.id]["name"]
+
+			
+			delete rooms[ roomName ].users[socket.id]
+			delete users[socket.id]
 			if (Object.keys(rooms[roomName].users).length == 0)
 				delete rooms[roomName]
+			else
+			{
+				socket.broadcast.to(roomName).emit('user-left',userName)
+				socket.broadcast.to(roomName).emit('member-list',rooms[roomName].users)	
+			}			
 			socket.broadcast.emit('list-rooms',rooms)
+			socket.leave(roomName)
+
 		}
-		// Object.keys(rooms).forEach( room => {
-		// 	delete rooms[room].users[socket.id]
-		// 	if (Object.keys(rooms[room].users).length == 0)
-		// 		delete rooms[room]
-		// 	socket.leave(room)
-		// 	socket.broadcast.emit('list-rooms',rooms)
-		// } )
+		console.log("disconnected with ",socket.id)
+		
 	})
 
 

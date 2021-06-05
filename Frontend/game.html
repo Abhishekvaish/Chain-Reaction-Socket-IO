@@ -4,45 +4,133 @@
 	<meta charset="utf-8">
 	<title>Chain Reaction</title>
 	<link rel="stylesheet" type="text/css" href="game.css">
-
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	
 </head>
 <body>
 <nav>
 	Chain Reaction
-	<div class="toggle" onclick="toggleSidePanel()">
-		O
+	<div id="turn" d class="turn">
+		<p></p>
+		<div></div>	
+	</div>
+	<div class="side-list">
+		<div class="toggle" onclick="toggleMemSidePanel()">
+			M
+		</div>
+		<div class="toggle" onclick="toggleSidePanel()">
+			C
+		</div>
 	</div>
 </nav>
 
 
+
+
+
 <div class="side-panel">
 	<div id="msgbox">
+
 <!-- 		<div class="joined"><p>Abhishek joined the chat</p></div>
 		<div class="me"><p>Me:Hi Abhishek</p></div>
 		<div class="other"><p>Abhishek : Hello kazuriki</p></div>
 		<div class="left"><p>Abhishek left the chat</p></div> -->
+
 	</div>
 	<form id="form" onsubmit="send(event)" >
 		<input type="text" id="msg">
 		<button type="submit">Send</button>
 	</form>
 </div>
-<div >
-	Id in dolore est aliqua veniam ut minim in eiusmod. Proident sint in cillum eiusmod voluptate non excepteur minim pariatur consequat excepteur eiusmod deserunt irure occaecat esse nulla sint. Ad eu duis mollit non non labore non occaecat exercitation id in deserunt. Et aliqua officia est esse consectetur ullamco aute tempor. Magna ex laboris minim id et irure magna sed culpa non dolor et quis officia elit enim nulla ea. Lorem ipsum dolore ex esse enim sed aliquip dolore dolore eiusmod dolore. Incididunt reprehenderit ut dolore sint ut veniam ut proident consequat irure consequat id ea anim consectetur fugiat ex occaecat. Magna reprehenderit labore aute duis irure sint id quis culpa duis ut eu incididunt aliqua exercitation. Deserunt laborum cupidatat irure ea dolore dolore commodo ad aute. Cillum in voluptate eiusmod id fugiat sint mollit nulla ut exercitation officia id deserunt nisi id et. Lorem ipsum tempor non et qui ullamco elit consequat quis ut in elit. Lorem ipsum reprehenderit non sunt ullamco id est ut sed minim deserunt voluptate occaecat id voluptate. Dolor esse id magna aliqua ullamco et laborum anim exercitation elit in ex exercitation cupidatat aute. Enim incididunt sunt velit dolore nulla officia pariatur adipisicing dolore enim. Magna consequat in ut amet occaecat ad labore in duis magna sint. Aliqua laboris sed aute sit dolore aute irure sit duis nulla ad nostrud est dolore ad dolore. Dolor labore et elit non duis deserunt officia dolor id. Ex ut nulla anim culpa fugiat consectetur eu eiusmod ullamco ad mollit et. Ut sunt non incididunt ex ullamco nulla voluptate quis in do amet anim nostrud elit consequat reprehenderit cupidatat excepteur. Aliquip sunt cillum id ex ullamco aute do culpa pariatur mollit incididunt. Ut dolore nulla aute proident quis aute veniam culpa proident voluptate. Lorem ipsum sint quis dolore velit id ad do culpa dolore do et ea in in nulla tempor. Incididunt sint qui ut esse pariatur do adipisicing dolore duis nostrud qui ullamco mollit adipisicing consequat non in in. Nisi eiusmod id labore sunt ex est in pariatur do qui ut sunt ea deserunt magna tempor ad aute. Aliqua veniam est magna in aute labore occaecat nisi anim in laboris. Sunt ea pariatur veniam reprehenderit enim veniam ullamco cillum sint cupidatat consectetur dolore irure exercitation proident incididunt fugiat consequat. Mollit cupidatat amet magna tempor cupidatat deserunt ut minim nulla adipisicing voluptate amet occaecat in. Ex proident voluptate veniam quis amet dolor proident ex velit ut ullamco anim amet nulla aute laborum. Lorem ipsum eiusmod id proident cillum ullamco et in consectetur ex proident consequat veniam sint sunt aliqua labore non. Commodo sit eiusmod nisi dolor mollit laborum mollit in quis proident elit minim nulla dolore. Pariatur dolore elit cillum adipisicing amet labore ad sit aliquip pariatur fugiat ut in in proident. Dolore consequat aliquip occaecat deserunt qui aliquip amet dolore officia et voluptate in et dolor. Aliquip occaecat amet laborum commodo voluptate duis officia consectetur magna id pariatur ullamco voluptate. Officia aute qui voluptate qui pariatur excepteur in laboris dolore labore in ad culpa aute sunt. Consectetur ut enim fugiat reprehenderit cillum dolor laboris occaecat. Cillum aute pariatur ullamco est nulla aute in ut pariatur ad sunt culpa magna minim veniam sunt laboris. Lorem ipsum cupidatat excepteur enim exercitation sunt elit deserunt ut fugiat ut proident velit aute minim id. Reprehenderit dolore ex laborum culpa irure id ut ut qui sit. Anim in ex ex nulla aute mollit aliqua veniam ex minim ad aute sunt elit aute in nulla. Commodo aliqua eu reprehenderit occaecat elit consectetur irure aliqua enim magna labore sed adipisicing sint eu pariatur. In ut id culpa adipisicing excepteur magna cillum do ut aute duis. Nisi mollit minim ullamco nostrud aliquip elit ut amet dolor ex duis laborum ut do laboris consequat excepteur quis. Lorem ipsum consectetur sunt ut aliqua excepteur irure ullamco id nisi ad in qui elit consectetur non velit. Eiusmod cupidatat aute officia incididunt sit ut enim proident labore minim. Labore quis qui anim nisi dolor occaecat sint est aliquip. Aliqua amet in quis enim et excepteur culpa minim amet. Lorem ipsum commodo occaecat est consectetur eu mollit excepteur quis incididunt in velit nostrud do. Mollit dolor aliqua sed incididunt elit cillum pariatur excepteur ullamco in qui consectetur enim dolor incididunt. Cillum consequat non dolor esse quis cillum consectetur laboris ut adipisicing veniam anim consequat voluptate tempor excepteur magna. Sunt elit magna in exercitation exercitation ex consequat magna adipisicing excepteur labore. Lorem ipsum enim do consequat aliquip fugiat dolor pariatur eu tempor. In labore veniam minim consectetur sint nostrud quis aliqua ut laborum ullamco quis et aliqua. Ut consequat dolore do consequat irure aliquip ex dolor aliquip tempor dolor ut eiusmod. Dolor eu in dolore aliquip culpa consectetur amet mollit. Lorem ipsum nulla est laborum et eu nulla commodo ut ut deserunt officia adipisicing esse laboris consequat ut voluptate laborum. Ad incididunt ea et in in fugiat consectetur dolore in. Occaecat sit consectetur pariatur ut quis proident et non velit laboris fugiat. Culpa ut ea consequat sint incididunt elit tempor dolor cupidatat do culpa cupidatat duis occaecat. Lorem ipsum magna aliqua aute incididunt tempor cupidatat commodo in dolor elit adipisicing voluptate id. In sunt magna qui ad sed aute non in tempor reprehenderit dolore labore aliqua tempor ut sit. Laborum magna dolore sed nulla ex veniam velit culpa culpa. Lorem ipsum laborum occaecat eiusmod mollit sed amet eu exercitation irure. Laborum eiusmod sed ullamco ut sint esse officia elit duis.
+
+
+<div class="members-side-panel">
+	Members
+	<br>
+	<br>
+	<div id="membersbox">
+
+		<!-- <div class="mem"><div class="color" style="background-color: red;"></div>Kazuriki </div>
+		<div class="mem"><div class="color" style="background-color: blue;"></div>Abhishek </div> -->
+
+	</div>
+	<form id="start-game" onsubmit="startGame(event)">
+		Rows : <input type="number" name="rows" min="2" max="20" required onchange="preview()">
+		Cols : <input type="number" name="cols" min="2" max="20" required onchange="preview()">
+		<button type="submit">start</button>
+	</form>
 </div>
 
+
+
+
+
+<div class="container" >
+	<div id="main">
+		
+	</div>
+	
+</div>
+
+	
+
+
+
 <script type="text/javascript">
+	function develop() {
+		const mainbox = document.getElementById("main")
+		for(let i = 0 ; i < 32 ;i ++){
+			mainbox.innerHTML += `<div class="box" onclick="" style="width: calc(95vw / 8 );height : calc(95vw / 8 ) ">	
+			</div>`
+
+		}
+		mainbox.style.gridTemplateColumns = "auto ".repeat(8)	
+		mainbox.children[0].innerHTML =  `<div class="rotbox"><div>
+						<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.7)">star</span>
+						</div>
+					</div>`
+		mainbox.children[4].innerHTML =`<div class="rotbox"><div>
+						<span class="material-icons star star-double-0" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						<span class="material-icons star star-double-1" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						</div>
+					</div>`
+		mainbox.children[20].innerHTML = mainbox.children[7].innerHTML  =`
+					<div class="rotbox"><div>
+						<span class="material-icons star star-triple-0" style ="color:white;font-size:calc(95vw /8 * 0.4)">star</span>
+						<span class="material-icons star star-triple-1" style ="color:white;font-size:calc(95vw /8 * 0.4)">star</span>
+						<span class="material-icons star star-triple-2" style ="color:white;font-size:calc(95vw /8 * 0.4)">star</span>
+						</div>
+					</div>`
+		mainbox.children[0].innerHTML += `<div class="move-right"><div>
+						<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.7)">star</span>
+						</div></div>`
+	}
+	
+	develop()
 	const sidepanel = document.getElementsByClassName('side-panel')[0]
+	const memsidepanel = document.getElementsByClassName('members-side-panel')[0]
+
 	function toggleSidePanel(){
 		if(sidepanel.style.display == "block")
 			sidepanel.style.display = "none"
 		else
+		{
 			sidepanel.style.display = "block"
+			memsidepanel.style.display = "none"
+		}
+	}
+	function toggleMemSidePanel(){
+		if(memsidepanel.style.display == "block")
+			memsidepanel.style.display = "none"
+		else{
+			memsidepanel.style.display = "block"
+			sidepanel.style.display = "none"
+
+		}
 	}
 </script>
 
-
-<script src="http://localhost:5000/socket.io/socket.io.js"></script>
-<script type="text/javascript" src="game.js"></script>
+<!-- <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="game.js"></script> -->
 </body>
 </html>

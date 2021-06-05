@@ -1,14 +1,40 @@
 body{
 	margin: 0;
 }
+
+
+
+
+/*--------------------NAVBAR-------------------*/
+
 nav{
 	height: 60px;
-	background-color: #333;
+	background-color: #333c;
 	color: white;
 	line-height: 60px;
 	font-size: 2rem;
 	padding-left: 30px;
 }
+.side-list{
+	display: inline-block;
+	float: right;
+}
+.toggle{
+	width: 20px;
+	height: 20px;
+	color: white;
+	display: inline;
+	/*justify-content: center;*/
+	margin-right: 30px;
+	cursor: pointer;
+}
+
+
+
+
+
+
+/*-------------------------------- SIDE BAR ------------------------------*/
 .side-panel {
 	position: absolute;
 	top: 60px;
@@ -26,12 +52,12 @@ nav{
 	overflow-y: scroll;
 }
 
-input{
+.side-panel input{
 	width: 380px;
 	/*height: 30px;*/
 	height: 30px;
 }
-button{
+.side-panel button{
 	padding: 10px;
 	width: 80px;
 }
@@ -76,15 +102,199 @@ button{
 	font-size: 0.8rem;
 }
 
-.toggle{
-	background-color: #333;
-	width: 20px;
+
+/*-------------------------MEMBER SIDEPANEL------------------------*/
+.members-side-panel{
+	position: absolute;
+	top: 60px;
+	right: 0;
+	height: calc(100vh - 100px);
+	display: none;
+	width: 250px;
+	padding: 20px;
+	z-index: 1;
+	background-color: white;
+}
+.mem{
+	margin-bottom: 5px;
+}
+.mem .color{
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.members-side-panel form{
+	margin-top: 30px;
+	display: none;
+}
+.members-side-panel input{
+	width: 40px;
+}
+
+
+/*-------------------TURN-INDICATOR--------------------*/
+
+.turn{
+	/*display: inline-block;*/
+	display: none;
+	background-color: white;
+	padding: 0px 10px;
+	border-radius: 20px;
+	opacity: 0.9;
+	line-height: 2rem;
+	font-size: 1rem;
+	margin-left: 30px;
+}
+.turn p{
+	margin-right: 10px;
+	margin-block-start : 0px;
+	margin-block-end : 0px;
+	display: inline-block;
+	color: black;
+}
+.turn div{
+	display: inline-block;
+	/*background-color: yellow;*/
 	height: 20px;
-	color: white;
+	width: 20px;
+	border-radius: 50%;
+	transform: translateY(3px);
+}
+
+
+
+
+
+/*----------------------------MAIN---------------------------------------*/
+.container{
 	display: flex;
 	justify-content: center;
-	display: inline-block;
-	float: right;
-	margin-right: 30px;
+	align-items: center;
+	flex-wrap: wrap;
+	background-color: #333;	
+	min-height: calc(100vh - 60px);
+}
+#main{	
+	display: grid;
+	/*grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto ;*/
+}
+.single-sphere{
+	height: 70%;
+	width: 70%;
+	border-radius: 50%;
+	color: white;
+}
+
+#main .box{
+	/*width: calc(95vw / 12 );
+	height: calc(95vw /12 );*/
+	border: 1px solid white;
+	background-color: #333a;
+	/*overflow: hidden;*/
+	position: relative;
+}
+.rotbox{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+.rotbox div{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	animation-name: rotatebox;
+	animation-duration: 4s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+.star{
+	/*color: white;
+	font-size: calc(95vw / 12 * 0.9) ; dynamically add by js*/
+	position: relative;
 	cursor: pointer;
+}
+.star-single{
+	animation-name: rotatebox;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+@keyframes  rotatebox{
+	100% {transform: rotate(360deg);}
+}
+
+
+.star-double-0{
+	animation-name: double-0;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+
+@keyframes double-0{
+	0%{left: 0%;}
+	50%{left: 20%;}
+	100%{left: 0%;transform: rotate(360deg);}
+}
+
+
+
+.star-double-1{		
+	animation-name: double-1;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;	
+}
+@keyframes double-1{
+	0%{left: 0%;}
+	50%{left: -20%;}
+	100%{left: 0%;transform: rotate(360deg);}
+}
+
+.star-triple-0{
+	animation-name: triple-0;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;	
+}
+
+@keyframes triple-0{
+	0%{left: 0%;top: 0%;}
+	50%{left: 40%; top: 40%;}
+	100%{left: 0%; top: 0% ;transform: rotate(360deg);}
+}
+
+.star-triple-1{
+	animation-name: triple-1;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;	
+}
+
+@keyframes triple-1{
+	0%{left: 0%;top: 0%;}
+	50%{left: -40%; top: 40%;}
+	100%{left: 0%; top: 0% ;transform: rotate(360deg);}
+}
+.star-triple-2{
+	animation-name: triple-2;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;	
+}
+
+@keyframes triple-2{
+	0%{top: 0%;}
+	50%{ top: -45%;}
+	100%{ top: 0% ;transform: rotate(360deg);}
+}
+.move-right{
+	position: absolute;
+	transform: translateX(100%);
 }
