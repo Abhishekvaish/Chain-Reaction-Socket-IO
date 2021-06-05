@@ -45,21 +45,29 @@ nav{
 	background-color: white;
 }
 #msgbox{
-	height: calc(100% - 90px) ;
+	height: 94% ;
 	background: #4442;
 	max-width: 430px;
-	padding: 20px;
+	padding: 0px 20px;
 	overflow-y: scroll;
 }
-
+#form{
+	display: flex;
+	background: #4442;	
+	padding: 0px 5px;
+	height: 5%;
+}
 .side-panel input{
 	width: 380px;
-	/*height: 30px;*/
 	height: 30px;
+	outline: none;
+	border-radius: 10px;
+	border: 1px solid gray;
+
 }
 .side-panel button{
-	padding: 10px;
-	width: 80px;
+	border-radius: 50%;
+	border: 0;
 }
 .me{
 	display: flex;
@@ -294,17 +302,60 @@ nav{
 	50%{ top: -45%;}
 	100%{ top: 0% ;transform: rotate(360deg);}
 }
+
+
+
+
+
+
+
+
+
 .move-right{
 	position: absolute;
-	top: 20%;
-	left: 50%;
+	top: 30%;
+	left: 30%;
 	animation-name: mvrt;
-	animation-duration: 1s;
 	animation-fill-mode: forwards;
-	/*display: none;*/
+	animation-duration: 1s;
 	z-index: 1;
 }
 @keyframes mvrt{
-	0%{display: block;}
-	100%{transform: translateX(100%);display: none;}
+	100%{transform: translateX(200%);opacity: 0	;}
+}
+.move-left{
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	animation-name: mvlt;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	z-index: 1;
+}
+@keyframes mvlt{
+	100%{transform: translateX(-200%);opacity: 0	;}
+}
+.move-up{
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	animation-name: mvup;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	z-index: 1;
+}
+@keyframes mvup{
+	100%{transform: translateY(-200%);opacity: 0	;}
+}
+.move-down{
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	animation-name: mvdn;
+	animation-fill-mode: forwards;
+	animation-duration: 1s;
+	z-index: 1;
+}
+@keyframes mvdn{
+	100%{transform: translateY(200%);opacity: 0	;}
 }

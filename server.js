@@ -95,6 +95,11 @@ io.on('connection',socket => {
 		socket.broadcast.to(roomName).emit('receive-grid-click',data)
 	})
 
+	socket.on('send-blast',data=>{
+		let  roomName = users[socket.id]		
+		socket.broadcast.to(roomName).emit('receive-blast',data)
+	})
+
 	socket.on('send-winner',name =>{
 		let roomName = users[socket.id]
 		socket.broadcast.to(roomName).emit('receive-winner',name)

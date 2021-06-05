@@ -43,7 +43,7 @@
 	</div>
 	<form id="form" onsubmit="send(event)" >
 		<input type="text" id="msg">
-		<button type="submit">Send</button>
+		<button type="submit"><span class="material-icons">send</span></button>
 	</form>
 </div>
 
@@ -82,6 +82,7 @@
 
 <script type="text/javascript">
 	function develop() {
+
 		const mainbox = document.getElementById("main")
 		for(let i = 0 ; i < 32 ;i ++){
 			mainbox.innerHTML += `<div class="box" onclick="" style="width: calc(95vw / 8 );height : calc(95vw / 8 ) ">	
@@ -89,6 +90,7 @@
 
 		}
 		mainbox.style.gridTemplateColumns = "auto ".repeat(8)	
+
 		mainbox.children[0].innerHTML =  `<div class="rotbox"><div>
 						<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.7)">star</span>
 						</div>
@@ -105,9 +107,51 @@
 						<span class="material-icons star star-triple-2" style ="color:white;font-size:calc(95vw /8 * 0.4)">star</span>
 						</div>
 					</div>`
+		
 		mainbox.children[0].innerHTML += `<div class="move-right"><div>
 						<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.7)">star</span>
+						</div></div>
+						<div class="move-down"><div>
+						<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.7)">star</span>
 						</div></div>`
+
+		mainbox.children[4].innerHTML += `
+					<div class="move-right">
+						<div>
+							<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						</div>
+					</div>
+					<div class="move-left">
+						<div>
+							<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						</div>
+					</div>
+					<div class="move-down">
+						<div>
+							<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						</div>
+					</div>
+					`
+			mainbox.children[20].innerHTML +=`
+					<div class="move-right">
+						<div>
+							<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						</div>
+					</div>
+					<div class="move-left">
+						<div>
+							<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						</div>
+					</div>
+					<div class="move-up">
+						<div>
+							<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						</div>
+					</div><div class="move-down">
+						<div>
+							<span class="material-icons star star-single" style ="color:white;font-size:calc(95vw / 8 * 0.4)">star</span>
+						</div>
+					</div>`
 	}
 	
 	// develop()

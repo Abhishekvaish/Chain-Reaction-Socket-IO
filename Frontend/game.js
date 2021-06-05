@@ -214,7 +214,7 @@ function getVictims(i,j){
 
 
 
-function gridclick(i , j , div){
+async function  gridclick(i , j , div){
 
 	if(div.children.length != 0 && rgbToHex(div.children[0].children[0].children[0].style.color) != color)
 		return
@@ -252,33 +252,41 @@ function gridclick(i , j , div){
 			socket.emit('send-click-grid',data)
 			receiveGridClick(data)
 		}
-		else {
+		else {			
 			data ={
 				"i"	: u[0] ,
 				"j" : u[1] ,
 				"color":null,
 				"count": 0
 			}
+			animateblast(u[0],u[1],color)
+			socket.emit('send-blast',{"i":u[0],"j":u[1],"color":color})
+			// return
+			await sleep(300)
 			socket.emit('send-click-grid',data)
 			receiveGridClick(data)			
 			victims.push(...adj)
 		}
 	}
-	let isWinner = true;
-	let totalcount = 0 ;
-	grid.forEach( row =>{
-		row.forEach( cell=>{
-			totalcount += cell.count
-			if ( cell.color != null && cell.color != color)
-				isWinner = false
-		} )
-	})
-	if (isWinner && totalcount > 1){
-		startform.style.display="block"
-		socket.emit('send-winner',name)
-		receiveWinner(name)		
-		return
+	if ( Object.keys(players).length > 1 )
+	{
+		let isWinner = true;
+		let totalcount = 0 ;
+		grid.forEach( row =>{
+			row.forEach( cell=>{
+				totalcount += cell.count
+				if ( cell.color != null && cell.color != color)
+					isWinner = false
+			} )
+		})
+		if (isWinner && totalcount > 1){
+			startform.style.display="block"
+			socket.emit('send-winner',name)
+			receiveWinner(name)		
+			return
+		}
 	}
+
 	
 
 	// after animations of move //TODO
@@ -342,8 +350,54 @@ socket.on('receive-grid-click',data=>{
 	receiveGridClick(data)
 })
 
+function animateblast(i,j,color) {
+	let sizeratio = 0.7
+	// if (mainbox.children[i*cols+j].children[0].children[0].children.length > 1)
+	// 	sizeratio = 0.4
+	// console.log(sizeratio)
+	let x = [0,0,1,-1]
+	let y = [1,-1,0,0]
+	for (let p = 0 ; p < 4 ;p++){
+		if ( -1 < i+x[p] && i+x[p] < rows &&  -1 < j+y[p] && j+y[p] < cols )
+		{
+			console.log(i+x[p] , j+y[p])
+			if (x[p] == 1)
+				mainbox.children[i*cols+j].innerHTML += `
+					<div class="move-down">
+						<div>
+							<span class="material-icons star star-single" style ="color:${color};font-size:calc(95vw / ${cols} * ${sizeratio})">star</span>
+						</div>
+					</div>`
+			if (x[p] == -1)
+				mainbox.children[i*cols+j].innerHTML += `
+					<div class="move-up">
+						<div>
+							<span class="material-icons star star-single" style ="color:${color};font-size:calc(95vw / ${cols} * ${sizeratio})">star</span>
+						</div>
+					</div>`
+			if (y[p] == 1)
+				mainbox.children[i*cols+j].innerHTML += `
+					<div class="move-right">
+						<div>
+							<span class="material-icons star star-single" style ="color:${color};font-size:calc(95vw / ${cols} * ${sizeratio})">star</span>
+						</div>
+					</div>`
+			if (y[p] == -1)
+				mainbox.children[i*cols+j].innerHTML += `
+					<div class="move-left">
+						<div>
+							<span class="material-icons star star-single" style ="color:${color};font-size:calc(95vw / ${cols} * ${sizeratio})">star</span>
+						</div>
+					</div>`
+		}
 
+	}
+	
+}
 
+socket.on('receive-blast',data => {
+	animateblast(data.i , data.j , data.color)
+})
 
 
 socket.on('receive-turn', i=>{
@@ -356,3 +410,10 @@ socket.on('receive-turn', i=>{
 })
 
 
+
+
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
