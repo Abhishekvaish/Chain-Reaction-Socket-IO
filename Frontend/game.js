@@ -92,7 +92,7 @@ function preview(){
 	rows = startform.children[0].value
 	cols = startform.children[1].value
 	if (cols == null || cols == 0)
-		cols = 2
+		cols = rows
 	
 	mainbox.innerHTML =""
 	for(let i=0;i<rows;i++)
@@ -114,6 +114,7 @@ function startGame(event) {
 		"cols":cols
 	})
 	startform.style.display="none"
+	toggleMemSidePanel()
 }
 
 socket.on('initialize-grid' , data => {
@@ -215,7 +216,7 @@ function getVictims(i,j){
 
 function gridclick(i , j , div){
 
-	if(div.children.length != 0 && rgbToHex(div.children[0].children[0].style.color) != color)
+	if(div.children.length != 0 && rgbToHex(div.children[0].children[0].children[0].style.color) != color)
 		return
 
 	if(turnIndex != myIndex)
@@ -309,21 +310,27 @@ function receiveGridClick(data){
 	{	
 		if (data.count == "1" )
 			mainbox.children[data.i*cols+data.j].innerHTML = `
-					<div>
-						<span class="material-icons star star-single" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.7)">star</span>
+					<div class="rotbox">
+						<div>
+							<span class="material-icons star star-single" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.7)">star</span>
+						</div>
 					</div>`
 		else if(data.count == "2")
 			mainbox.children[data.i*cols+data.j].innerHTML = `
-					<div>
-						<span class="material-icons star star-double-0" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
-						<span class="material-icons star star-double-1" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
+					<div class="rotbox">
+						<div>
+							<span class="material-icons star star-double-0" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
+							<span class="material-icons star star-double-1" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
+						</div>
 					</div>`
 		else if(data.count =="3")
 			mainbox.children[data.i*cols+data.j].innerHTML = `
-					<div>
-						<span class="material-icons star star-triple-0" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
-						<span class="material-icons star star-triple-1" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
-						<span class="material-icons star star-triple-2" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
+					<div class="rotbox">
+						<div>
+							<span class="material-icons star star-triple-0" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
+							<span class="material-icons star star-triple-1" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
+							<span class="material-icons star star-triple-2" style ="color:${data.color};font-size:calc(95vw / ${cols} * 0.4)">star</span>
+						</div>
 					</div>`
 
 	}

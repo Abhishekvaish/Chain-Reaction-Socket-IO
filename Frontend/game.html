@@ -10,16 +10,20 @@
 <body>
 <nav>
 	Chain Reaction
-	<div id="turn" d class="turn">
+	<div id="turn"  class="turn">
 		<p></p>
 		<div></div>	
 	</div>
 	<div class="side-list">
 		<div class="toggle" onclick="toggleMemSidePanel()">
-			M
+			<span class="material-icons">
+				people
+			</span>
 		</div>
 		<div class="toggle" onclick="toggleSidePanel()">
-			C
+			<span class="material-icons">
+				chat
+			</span>
 		</div>
 	</div>
 </nav>
@@ -106,7 +110,7 @@
 						</div></div>`
 	}
 	
-	develop()
+	// develop()
 	const sidepanel = document.getElementsByClassName('side-panel')[0]
 	const memsidepanel = document.getElementsByClassName('members-side-panel')[0]
 
@@ -130,7 +134,7 @@
 	}
 </script>
 
-<!-- <script src="http://localhost:5000/socket.io/socket.io.js"></script>
-<script type="text/javascript" src="game.js"></script> -->
+<script src="http://localhost:5000/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="game.js"></script>
 </body>
 </html>

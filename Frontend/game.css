@@ -220,7 +220,7 @@ nav{
 }
 .star-single{
 	animation-name: rotatebox;
-	animation-duration: 2s;
+	animation-duration: 3s;
 	animation-iteration-count: infinite;
 	animation-timing-function: linear;
 }
@@ -296,5 +296,15 @@ nav{
 }
 .move-right{
 	position: absolute;
-	transform: translateX(100%);
+	top: 20%;
+	left: 50%;
+	animation-name: mvrt;
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	/*display: none;*/
+	z-index: 1;
+}
+@keyframes mvrt{
+	0%{display: block;}
+	100%{transform: translateX(100%);display: none;}
 }
