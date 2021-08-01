@@ -212,6 +212,27 @@ function getVictims(i,j){
 
 }
 
+function isWinner(){
+	if ( Object.keys(players).length > 1 )
+	{
+		let isWinner = true;
+		let totalcount = 0 ;
+		grid.forEach( row =>{
+			row.forEach( cell=>{
+				totalcount += cell.count
+				if ( cell.color != null && cell.color != color)
+					isWinner = false
+			} )
+		})
+		if (isWinner && totalcount > 1){
+			startform.style.display="block"
+			socket.emit('send-winner',name)
+			receiveWinner(name)		
+			return true
+		}
+		return false
+	}
+}
 
 
 async function  gridclick(i , j , div){
@@ -261,31 +282,41 @@ async function  gridclick(i , j , div){
 			}
 			animateblast(u[0],u[1],color)
 			socket.emit('send-blast',{"i":u[0],"j":u[1],"color":color})
-			// return
+
 			await sleep(300)
+
 			socket.emit('send-click-grid',data)
 			receiveGridClick(data)			
+
+			// return
+			check = isWinner()
+			console.log("isWinner === ",check)
+			if (check)
+				return
+
 			victims.push(...adj)
 		}
 	}
-	if ( Object.keys(players).length > 1 )
-	{
-		let isWinner = true;
-		let totalcount = 0 ;
-		grid.forEach( row =>{
-			row.forEach( cell=>{
-				totalcount += cell.count
-				if ( cell.color != null && cell.color != color)
-					isWinner = false
-			} )
-		})
-		if (isWinner && totalcount > 1){
-			startform.style.display="block"
-			socket.emit('send-winner',name)
-			receiveWinner(name)		
-			return
-		}
-	}
+
+
+	// if ( Object.keys(players).length > 1 )
+	// {
+	// 	let isWinner = true;
+	// 	let totalcount = 0 ;
+	// 	grid.forEach( row =>{
+	// 		row.forEach( cell=>{
+	// 			totalcount += cell.count
+	// 			if ( cell.color != null && cell.color != color)
+	// 				isWinner = false
+	// 		} )
+	// 	})
+	// 	if (isWinner && totalcount > 1){
+	// 		startform.style.display="block"
+	// 		socket.emit('send-winner',name)
+	// 		receiveWinner(name)		
+	// 		return
+	// 	}
+	// }
 
 	
 
@@ -295,15 +326,18 @@ async function  gridclick(i , j , div){
 }
 
 function receiveWinner(winnerName) {
-
+	console.log(winnerName)
 	if (winnerName == name)
-		alert("You win !!!!")
+		openWinner("You win !!!!")
+		// alert("You win !!!!")
 	else
-		alert(`${winnerName} won :( `)
+		openWinner(`${winnerName} won :( `)
+		// alert(`${winnerName} won :( `)
 
 }
 socket.on('receive-winner',winnerName=>{
-	setTimeout(receiveWinner(winnerName) , 1000)
+	receiveWinner(winnerName)
+	// setTimeout( , 1000)
 	
 })
 
@@ -360,7 +394,7 @@ function animateblast(i,j,color) {
 	for (let p = 0 ; p < 4 ;p++){
 		if ( -1 < i+x[p] && i+x[p] < rows &&  -1 < j+y[p] && j+y[p] < cols )
 		{
-			console.log(i+x[p] , j+y[p])
+			// console.log(i+x[p] , j+y[p])
 			if (x[p] == 1)
 				mainbox.children[i*cols+j].innerHTML += `
 					<div class="move-down">

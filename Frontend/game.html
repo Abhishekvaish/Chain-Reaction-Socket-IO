@@ -78,6 +78,10 @@
 
 	
 
+<div class="winner">
+	<p>You Win</p>
+	<button onclick="closeWinner()">OK</button>
+</div>
 
 
 <script type="text/javascript">
@@ -175,6 +179,18 @@
 			sidepanel.style.display = "none"
 
 		}
+	}
+
+	const winner = document.querySelector('.winner')
+	function closeWinner(){
+		winner.style.transform = "scale(0.1)"
+		winner.style.display = "none"
+	}
+	function openWinner(msg){
+		winner.children[0].innerHTML = msg
+		winner.style.display = "block"
+		setTimeout(()=>winner.style.transform = "scale(1)" , 1 )
+		
 	}
 </script>
 
