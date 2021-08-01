@@ -1,4 +1,4 @@
-const socket = io('http://localhost:5000')
+const socket = io('http://localhost:8000')
 const msgbox = document.getElementById("msgbox")
 const membersbox  = document.getElementById("membersbox")
 const startform = document.getElementById("start-game")

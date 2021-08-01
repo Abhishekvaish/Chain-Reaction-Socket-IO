@@ -74,17 +74,23 @@ nav{
 	justify-content: flex-end;
 }
 .me p{
+	max-width: 90%;
 	background-color: #FFE5Da;
 	padding: 10px 20px;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
 	border-bottom-left-radius: 20px;
 }
+.me p > * {
+	object-fit: cover;
+	max-width: 90%;
+}
 .other {
 	display: flex;
 	justify-content: flex-start;
 }
 .other p{
+	max-width: 90%;
 	background-color: #fffffa;
 	padding: 10px 20px;
 	border-top-left-radius: 20px;
