@@ -257,6 +257,10 @@ async function  gridclick(i , j , div){
 		// if(failsafe > 10)
 		// 	return
 		// console.log(String(victims))
+		check = isWinner();
+		console.log("isWinner === ",check)
+		if (check)
+			return
 
 		u = victims.shift()
 		
@@ -289,10 +293,10 @@ async function  gridclick(i , j , div){
 			receiveGridClick(data)			
 
 			// return
-			check = isWinner()
-			console.log("isWinner === ",check)
-			if (check)
-				return
+			// check = isWinner();
+			// console.log("isWinner === ",check)
+			// if (check)
+			// 	return
 
 			victims.push(...adj)
 		}

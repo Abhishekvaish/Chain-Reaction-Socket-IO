@@ -1,9 +1,18 @@
-const cors = require('cors')
-const io = require('socket.io')(8000,{
-	cors: {
-		origin:'*'
-	}
-})
+const PORT  = process.env.PORT | 8000 
+const express = require('express')
+const app = express()
+app.use('/',express.static('Frontend') )
+const server = app.listen(PORT)
+const io = require('socket.io')(server)
+
+
+
+// const cors = require('cors')
+// const io = require('socket.io')(8000,{
+// 	cors: {
+// 		origin:'*'
+// 	}
+// })
 
 rooms =  {}
 // {
