@@ -8,8 +8,8 @@ const io = require('socket.io')(server)
 
 
 function getRandomColor() {
-  var letters = '0123456789ABCDEF'
-  var color = '#FF0000'
+  var letters = '0123456789abcdef'
+  var color = '#ff0000'
 
   while( colors.includes(color) )
   {
@@ -36,7 +36,7 @@ rooms =  {}
 
 users = {}
 
-colors = ["#FF0000" , "#00FF00", "#0000FF" , "#FFFF00" , "#00FFFF" , "#FF00FF"]
+colors = ["#ff0000" , "#00ff00", "#0000ff" , "#ffff00" , "#00ffff" , "#ff00ff"]
 
 io.on('connection',socket => {
 	console.log("connected with ", socket.id)
