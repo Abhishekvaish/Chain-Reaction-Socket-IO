@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8000')
+const socket = io()
 const listdiv = document.getElementById("list-rooms")
 const inputField = document.getElementById('room-name')
 

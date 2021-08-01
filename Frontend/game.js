@@ -1,4 +1,4 @@
-const socket = io('http://localhost:8000')
+const socket = io()
 const msgbox = document.getElementById("msgbox")
 const membersbox  = document.getElementById("membersbox")
 const startform = document.getElementById("start-game")
@@ -258,7 +258,7 @@ async function  gridclick(i , j , div){
 		// 	return
 		// console.log(String(victims))
 		check = isWinner();
-		console.log("isWinner === ",check)
+		// console.log("isWinner === ",check)
 		if (check)
 			return
 
@@ -302,7 +302,10 @@ async function  gridclick(i , j , div){
 		}
 	}
 
-
+	check = isWinner();
+	// console.log("isWinner === ",check)
+	if (check)
+		return
 	// if ( Object.keys(players).length > 1 )
 	// {
 	// 	let isWinner = true;
@@ -330,7 +333,6 @@ async function  gridclick(i , j , div){
 }
 
 function receiveWinner(winnerName) {
-	console.log(winnerName)
 	if (winnerName == name)
 		openWinner("You win !!!!")
 		// alert("You win !!!!")

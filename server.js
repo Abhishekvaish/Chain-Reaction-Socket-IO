@@ -7,12 +7,18 @@ const io = require('socket.io')(server)
 
 
 
-// const cors = require('cors')
-// const io = require('socket.io')(8000,{
-// 	cors: {
-// 		origin:'*'
-// 	}
-// })
+function getRandomColor() {
+  var letters = '0123456789ABCDEF'
+  var color = '#FF0000'
+
+  while( colors.includes(color) )
+  {
+  	color = '#'
+  	for (var i = 0; i < 6; i++) 
+	    color += letters[Math.floor(Math.random() * 16)]	
+  }
+  return color
+}
 
 rooms =  {}
 // {
@@ -29,7 +35,8 @@ rooms =  {}
 // }
 
 users = {}
-colors = ["#ff0000" , "#00ff00", "#0000ff" , "#ffff00" , "#00ffff" , "#ff00ff"]
+
+colors = ["#FF0000" , "#00FF00", "#0000FF" , "#FFFF00" , "#00FFFF" , "#FF00FF"]
 
 io.on('connection',socket => {
 	console.log("connected with ", socket.id)
@@ -44,7 +51,7 @@ io.on('connection',socket => {
 	socket.on('join-room' , data => {
 		if (rooms[data.roomName]){
 			colindex = Object.keys(rooms[data.roomName].users).length	
-			
+			colindex>5?colors.push(getRandomColor()):null
 			rooms[data.roomName].users[socket.id] = {
 				"name": data.userName	,
 				"color": colors[colindex]
